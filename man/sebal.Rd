@@ -91,7 +91,7 @@ You can use the  Worldwide Station List at
 \url{https://en.wikipedia.org/wiki/List_of_airports_by_IATA_code:_A} [Accessed on 2016-5-6]}
 
 \item{Krs}{Relationship between the fraction of extraterrestrial radiation that reaches the 
-earth's surface, Rs/Ra, and the air temperature difference Tmax - Tmin for
+earths surface, Rs/Ra, and the air temperature difference Tmax - Tmin for
 interior (Krs = 0.16) and coastal (Krs = 0.19) regions}
 
 \item{surface}{character. It is either "grass" or "alfalfa"}
