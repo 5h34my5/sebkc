@@ -42,11 +42,11 @@ SAVI(Soil-adjusted Vegetation Index) values.
 \item{welev}{Weather station elevation in meters}
 
 \item{xyhot}{numeric or "auto". A list of x and y coordinates of a 
-hot pixel in the form c(x,y). If it is set to "auto", \code{\link{hotTs}} 
+hot pixel in the form c(x,y). If it is set to "auto", \code{\link{hotTs2}} 
 will be used to compute it.}
 
 \item{xycold}{numeric or "auto". A list of x and y coordinates of a 
-cold pixel in the form of c(x,y). If it set to "auto", \code{\link{coldTs}} 
+cold pixel in the form of c(x,y). If it set to "auto", \code{\link{coldTs2}} 
 will be used to compute it.}
 
 \item{DOY}{Numeric or Date [YYYY-mm-dd]. Day of the Year. 
@@ -106,7 +106,7 @@ time is 12.5 for a period between 12:00 and 13:00}
 
 \item{Lz}{longitude of the centre of the local time zone [degrees west of Greenwich].
 MUST BE POSITIVE
-Lz = 0° for Greenwich.}
+Lz = 0Â° for Greenwich.}
 
 \item{Lm}{longitude of the measurement site [degrees west of Greenwich]. MUST BE POSITIVE}
 
