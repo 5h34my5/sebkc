@@ -27,10 +27,10 @@
 #'  You can also point to file on your computer.
 #' @param t1 numeric. The length of the calculation period in hour; 1 for hour, 0.5 for 30 minutes 0.25 for 15 minutes
 #' @param xycold numeric or "auto". A list of x and y coordinates of a 
-#' cold pixel in the form of c(x,y). If it set to "auto", \code{\link{coldTs}} 
+#' cold pixel in the form of c(x,y). If it set to "auto", \code{\link{coldTs2}} 
 #' will be used to compute it.
 #' @param xyhot numeric or "auto". A list of x and y coordinates of a 
-#' hot pixel in the form c(x,y). If it is set to "auto", \code{\link{hotTs}} 
+#' hot pixel in the form c(x,y). If it is set to "auto", \code{\link{hotTs2}} 
 #' will be used to compute it.
 #' @param DOY Numeric or Date [YYYY-mm-dd]. Day of the Year. 
 #' If you give data in the form of date [YYYY-mm-dd], it will be converted to DOY
