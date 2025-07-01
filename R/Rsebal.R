@@ -289,11 +289,11 @@ latitude=NULL,t1=1,time=NULL, Lz=NULL,Lm=NULL,model="SEBAL",iter.max=7,clip=NULL
   }
   }
   
-  if(class(xyhot)=="hotTs"){
+  if(class(xyhot)=="hotTs2"){
     xyhot=xyhot$xyhot
   }
   
-  if(class(xycold)=="coldTs"){
+  if(class(xycold)=="coldTs2"){
     xycold=xycold$xycold
   }
   testcold=NULL
