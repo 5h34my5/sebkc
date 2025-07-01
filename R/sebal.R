@@ -164,7 +164,7 @@
 #' @rdname sebal
 
 sebal<-function(albedo,Ts,NDVI,SAVI,welev,xyhot="auto",xycold="auto",DOY=NULL,
-sunelev,zx=10,u=2,zomw=2,zom=NULL,LAI=NULL,DEM=NULL,lapse=0.0065,Rn24=NULL,ETr=NULL,
+sunelev=NULL,zx=10,u=2,zomw=2,zom=NULL,LAI=NULL,DEM=NULL,lapse=0.0065,Rn24=NULL,ETr=NULL,
 ETr24=NULL,wmo=NULL, airport=NULL,Krs=0.16,surface = "grass",
 latitude=NULL,t1=1,time=NULL, Lz=NULL,Lm=NULL,
 model="SEBAL",iter.max=7,clip=NULL,folder=NULL)UseMethod ("sebal")
@@ -224,7 +224,6 @@ latitude=NULL,t1=1,time=NULL, Lz=NULL,Lm=NULL,model="SEBAL",iter.max=7,clip=NULL
   
   if(is.null(ETr)||is.null(ETr24)||is.null(Rn24)){
   if(!is.null(wmo)||!is.null(airport)){
-    mod=sebkc.tryCatch(mod)$value
     thisDOY=sebkc.tryCatch(mod$date)$value
     if(class(thisDOY)[1]=="simpleError"){
       thisDOY=DOY 
