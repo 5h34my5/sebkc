@@ -30,7 +30,7 @@
 #' cold pixel in the form of c(x,y). If it set to "auto", \code{\link{coldTs2}} 
 #' will be used to compute it.
 #' @param xyhot numeric or "auto". A list of x and y coordinates of a 
-#' hot pixel in the form c(x,y). If it is set to "auto", \code{\link{hotTs2}} 
+#' hot pixel in the form c(x,y). If it is set to "auto", \code{\link{2}} 
 #' will be used to compute it.
 #' @param DOY Numeric or Date [YYYY-mm-dd]. Day of the Year. 
 #' If you give data in the form of date [YYYY-mm-dd], it will be converted to DOY
@@ -91,7 +91,7 @@
 #'  the function to run. Without these "autos", it will take about 45
 #'  minutes. It is advisable to perform 3 step analyses of using three 
 #'  functions as follows: \code{\link{sebkcstack}}, \code{\link{landsat578}},
-#'  \code{\link{hotTs}}, \code{\link{coldTs}}. You need not to go through this if you have your 
+#'  \code{\link{hotTs2}}, \code{\link{coldTs2}}. You need not to go through this if you have your 
 #'  albedo, Ts, NDVI, SAVI from MODIS, ASTER etc}
 #'  }
 #'  
@@ -153,9 +153,9 @@
 #'  data=landsat578(rawdata,welev=welev)
 #'  #perform semi-auto simulation mod=sebal(data,welev=welev)
 #' # Determine xyhot. Digitize polygon on the Ts map
-#' modhot=hotTs(data,welev=welev,extent="digitize",cluster=2)
+#' modhot=hotTs2(data,welev=welev,extent="digitize",cluster=2)
 #' #determine the cold. Digitize polygon on the Ts map
-#' modcold=coldTs(data,welev=welev,extent="digitize",cluster=2)
+#' modcold=coldTs2(data,welev=welev,extent="digitize",cluster=2)
 #' xyhot=modhot$xyhot
 #' xycold=modcold$xycold
 #' modsebal=sebal(folder=data,xyhot=xyhot,xycold=xycold,welev=welev)
@@ -358,14 +358,14 @@ latitude=NULL,t1=1,time=NULL, Lz=NULL,Lm=NULL,model="SEBAL",iter.max=7,clip=NULL
   
   if(!is.null(testhot)){
     #print(xyhot)
-    modhot=hotTs(Ts=Ts,NDVI=NDVI,albedo=albedo,DEM=DEM,
+    modhot=hotTs2(Ts=Ts,NDVI=NDVI,albedo=albedo,DEM=DEM,
                  extent=xyhot,upper=0.80,lower=0.1)
       xhot=modhot$x
       yhot=modhot$y
     
   }
   if(!is.null(testcold)){
-    modcold=coldTs(Ts=Ts,NDVI=NDVI,albedo=albedo,DEM=DEM,
+    modcold=coldTs2(Ts=Ts,NDVI=NDVI,albedo=albedo,DEM=DEM,
                    extent=xycold,upper=0.95,lower=0.1,sunangle = sunangle)
     
       xcold=modcold$x
