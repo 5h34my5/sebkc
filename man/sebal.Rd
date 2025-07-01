@@ -160,7 +160,7 @@ soil heat flux(G) and Net Radiation(Rn).
  the function to run. Without these "autos", it will take about 45
  minutes. It is advisable to perform 3 step analyses of using three 
  functions as follows: \code{\link{sebkcstack}}, \code{\link{landsat578}},
- \code{\link{hotTs}}, \code{\link{coldTs}}. You need not to go through this if you have your 
+ \code{\link{hotTs2}}, \code{\link{coldTs2}}. You need not to go through this if you have your 
  albedo, Ts, NDVI, SAVI from MODIS, ASTER etc}
  }
 }
