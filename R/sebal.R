@@ -358,7 +358,7 @@ latitude=NULL,t1=1,time=NULL, Lz=NULL,Lm=NULL,model="SEBAL",iter.max=7,clip=NULL
   if(!is.null(testhot)){
     #print(xyhot)
     modhot=hotTs2(Ts=Ts,NDVI=NDVI,albedo=albedo,DEM=DEM,
-                 extent=xyhot,upper=0.80,lower=0.1)
+                 extent=xyhot,upper=0.80,lower=0.1, sunangle = sunangle)
       xhot=modhot$x
       yhot=modhot$y
     
