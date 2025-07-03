@@ -5,13 +5,13 @@
 #'
 #' @param TH the average of the representative 
 #' 3 hot pixels selected for hot "bare" areas. 
-#' If it is set to "auto" TH will be estimated from \code{\link{hotTs}} 
+#' If it is set to "auto" TH will be estimated from \code{\link{hotTs2}} 
 #' @param TC the average of representative 3 cold 
 #' pixels selected from the irrigated fields. 
-#' When it is set to "auto" TC will be estimated from \code{\link{coldTs}} 
+#' When it is set to "auto" TC will be estimated from \code{\link{coldTs2}} 
 #' @inheritParams sebal
 #' @inheritParams ETo 
-#' @inheritParams coldTs 
+#' @inheritParams coldTs2
 #' @inheritParams sebkcstack
 #' @inheritParams ETohr
 #' @inheritParams weather
@@ -51,12 +51,12 @@
 #' data=landsat578(rawdata,welev=welev)
 #' #perform semi-auto simulation 
 #' #Determine xyhot. Digitize polygon on the Ts map
-#' modhot=hotTs(data,welev=300,extent="digitize",cluster=2)
+#' modhot=hotTs2(data,welev=300,extent="digitize",cluster=2)
 #' #determine the cold. Digitize polygon on the Ts map
-#' modcold=coldTs(data,welev=275,extent="digitize",cluster=2)
+#' modcold=coldTs2(data,welev=275,extent="digitize",cluster=2)
 #' xyhot=modhot$Tshot
 #' xycold=modcold$Tscold
-#' #use object of \code{\link{coldTs}} or \code{\link{hotTs}} in different ways
+#' #use object of \code{\link{coldTs2}} or \code{\link{hotTs2}} in different ways
 #' modsseb=sseb(Ts=Ts,TH=xyhot,TC=modcold,sunelev=50,NDVI=NDVI,DEM=NULL,
 #' albedo=albedo,NDVImax=0.7,cc=0.65,KL=0.0065,
 #' ETo="auto",x=1.2,Tmax=31,Tmin=28,zx=10,
@@ -159,11 +159,11 @@ if(!is.null(DEM)){
 Tx=Tx+(KL*DEM)
 }
 
-if(class(TH)=="hotTs"){
+if(class(TH)=="hotTs2"){
   TH=TH$Tshot
 }
 
-if(class(TC)=="coldTs"){
+if(class(TC)=="coldTs2"){
   TC=TC$Tscold
 }
 
@@ -193,12 +193,12 @@ if((TH=="auto"||TH=="Auto"||TH=="AUTO"||TH=="FULL"||TH=="full"||TH=="Full")&&(!i
 }
 
 if(!is.null(testhot)){
-  modhot=hotTs(Ts=Tx,NDVI=NDVI,albedo=albedo,DEM=DEM,
+  modhot=hotTs2(Ts=Tx,NDVI=NDVI,albedo=albedo,DEM=DEM,
                extent=TH,upper=0.80,lower=0.1)
   TH=modhot$TH
 }
 if(!is.null(testcold)){
-  modcold=coldTs(Ts=Tx,sunangle=sunelev,NDVI=NDVI,albedo=albedo,
+  modcold=coldTs2(Ts=Tx,sunangle=sunelev,NDVI=NDVI,albedo=albedo,
                  DEM=DEM,extent=TC,upper=0.95,lower=0.1)
   TC=modcold$TC
 }
