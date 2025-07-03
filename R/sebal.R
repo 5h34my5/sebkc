@@ -471,9 +471,9 @@ latitude=NULL,t1=1,time=NULL, Lz=NULL,Lm=NULL,model="SEBAL",iter.max=7,clip=NULL
     u_star_hot=getValues(u_star)[cellFromXY(u_star,c(xhot,yhot))]
     
     L=-((p*cp*(u_star_hot^3)*Ts_hot)/(k*g*H_hot))
-    x_200m=(max(0,1-(16*(200/L)))^0.25
-    x_2m=(max(0,1-(16*(2/L)))^0.25
-    x_01m=(max(0,1-(16*(0.1/L)))^0.25
+    x_200m=(max(0,1-(16*(200/L))))^0.25
+    x_2m=(max(0,1-(16*(2/L))))^0.25
+    x_01m=(max(0,1-(16*(0.1/L))))^0.25
     
     w_200m=ifelse(L<0,2*log((1+x_200m)/2)+log((1+x_200m^2)/2)-2*
                     atan(x_200m)+0.5*pi,(ifelse(L>0,-5*(200/L),0)))
