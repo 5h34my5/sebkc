@@ -193,12 +193,12 @@ if((TH=="auto"||TH=="Auto"||TH=="AUTO"||TH=="FULL"||TH=="full"||TH=="Full")&&(!i
 }
 
 if(!is.null(testhot)){
-  modhot=hotTs2(Ts=Tx,NDVI=NDVI,albedo=albedo,DEM=DEM,
+  modhot=hotTs2(Ts=Tx,sunelev=sunelev,NDVI=NDVI,albedo=albedo,DEM=DEM,
                extent=TH,upper=0.80,lower=0.1)
   TH=modhot$TH
 }
 if(!is.null(testcold)){
-  modcold=coldTs2(Ts=Tx,sunangle=sunelev,NDVI=NDVI,albedo=albedo,
+  modcold=coldTs2(Ts=Tx,sunelev=sunelev,NDVI=NDVI,albedo=albedo,
                  DEM=DEM,extent=TC,upper=0.95,lower=0.1)
   TC=modcold$TC
 }
