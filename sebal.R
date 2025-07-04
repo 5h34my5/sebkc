@@ -470,38 +470,19 @@ latitude=NULL,t1=1,time=NULL, Lz=NULL,Lm=NULL,model="SEBAL",iter.max=7,clip=NULL
     }
     u_star_hot=getValues(u_star)[cellFromXY(u_star,c(xhot,yhot))]
     
+    L=-((p*cp*(u_star_hot^3)*Ts_hot)/(k*g*H_hot))
     
-    # --- Start of Robust L and Stability Correction ---
-    # Check if H_hot is problematic (zero, negative, NA, NaN) or if u_star_hot is problematic
-    # If H_hot is zero or very small, L becomes Inf. If H_hot is negative, L becomes positive (stable).
-    # If u_star_hot is zero, L becomes Inf.
-    if (is.na(H_hot) || is.nan(H_hot) || H_hot <= 0 || is.na(u_star_hot) || is.nan(u_star_hot) || u_star_hot == 0) {
-        # If conditions are bad, set L to a large positive number (effectively neutral/stable)
-        # and set stability corrections to 0 (assuming neutral conditions)
-        L <- 999999999999 # A very large number to represent effectively neutral conditions
-        warning("Problematic H_hot or u_star_hot detected for hot pixel in Monin-Obukhov calculation. Setting L to a large value and stability corrections to zero for this iteration to prevent NaN propagation.")
-        x_200m <- 0 # These would normally be derived from L, setting to 0 implies no correction
-        x_2m <- 0
-        x_01m <- 0
-        w_200m <- 0
-        w_2m <- 0
-        w_01m <- 0
-    } else {
-        # Original calculation for L and stability terms if H_hot and u_star_hot are valid
-        L=-((p*cp*(u_star_hot^3)*Ts_hot)/(k*g*H_hot))
+        
+    x_200m=(1-(16*(200/L)))^0.25
+    x_2m=(1-(16*(2/L)))^0.25
+    x_01m=(1-(16*(0.1/L)))^0.25
+
     
-        # Apply max(0, ...) for the base of the power as you previously did, to prevent negative roots
-        x_200m=(max(0,1-(16*(200/L))))^0.25
-        x_2m=(max(0,1-(16*(2/L))))^0.25
-        x_01m=(max(0,1-(16*(0.1/L))))^0.25
-    
-        # Original w_ calculations (they should handle L being positive or negative already)
-        w_200m=ifelse(L<0,2*log((1+x_200m)/2)+log((1+x_200m^2)/2)-2*
-                      atan(x_200m)+0.5*pi,(ifelse(L>0,-5*(200/L),0)))
-        w_2m=ifelse(L<0,2*log((1+x_2m^2)/2),ifelse(L>0,-5*(2/L),0))
-        w_01m=ifelse(L<0,2*log((1+x_01m^2)/2),ifelse(L>0,-5*(2/L),0))
-    }
-# --- End of Robust L and Stability Correction ---
+    w_200m=ifelse(L<0,2*log((1+x_200m)/2)+log((1+x_200m^2)/2)-2*
+                  atan(x_200m)+0.5*pi,(ifelse(L>0,-5*(200/L),0)))
+    w_2m=ifelse(L<0,2*log((1+x_2m^2)/2),ifelse(L>0,-5*(2/L),0))
+    w_01m=ifelse(L<0,2*log((1+x_01m^2)/2),ifelse(L>0,-5*(2/L),0))
+
     
     u_star=(u200*k)/(log(200/zom)-w_200m)
     rah=(log(z2/z1)-w_2m+w_01m)/(u_star*k)
